@@ -1,0 +1,168 @@
+@import "../variables";
+
+header {
+  margin: 0;
+  background: $bg-clr;
+  text-align: center;
+  display: grid;
+  position: fixed;
+  //position: relative;
+  z-index: 1000;
+  width: 100vw;
+
+  nav {
+    position: absolute;
+    text-align: left;
+    top: 100%;
+    left: 0;
+    background: $bg-clr;
+    width: 100vw;
+    transform: scale(1, 0);
+    transform-origin: top;
+    transition: transform 200ms ease-in-out;
+    //display: none;
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 100ms ease-in-out;
+    }
+
+    a:hover {
+      color: #FF525D
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      margin-bottom: 1em;
+      margin-left: 1em;
+    }
+  }
+
+  .nav-toggle:checked + nav {
+    //display: block;
+    transform: scale(1, 1);
+
+    a {
+      opacity: 1;
+      transition: opacity 100ms ease-in-out 175ms;
+    }
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 1em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    span, span::before, span::after {
+      display: block;
+      background: white;
+      height: 2px;
+      width: 2em;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    span::before, span::after {
+      content: '';
+      position: absolute;
+    }
+
+    span::before {
+      bottom: 7px;
+    }
+
+    span::after {
+      top: 7px;
+    }
+  }
+
+}
+
+@media only screen and (min-width: $xs) {
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(400px, 3fr) 1fr;
+
+    .nav-toggle-label {
+      display: none;
+    }
+
+    .logo {
+      grid-column: 2 / 3;
+    }
+
+    nav {
+      all: unset;
+      grid-column: 3 / 4;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      a {
+        opacity: 1;
+        position: relative;
+      }
+
+      a::before {
+        content: '';
+        display: block;
+        height: 5px;
+        background: #FF525D;
+        position: absolute;
+        top: -.5em;
+        left: 0;
+        right: 0;
+        transform: scale(0, 1);
+        transition: transform  250ms ease-in-out;
+      }
+
+      a:hover::before {
+        transform: scale(1, 1);
+      }
+
+      ul {
+        display: flex;
+      }
+
+      li {
+        margin-left: 3em;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .content > div.login-wrapper {
+    width: 300px;
+  }
+}
+
+.content {
+  color: white;
+  padding-top: 129px;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../assets/background.jpg);
+  background-color: #333333;
+  background-blend-mode: multiply;
+  -webkit-background-size: cover;
+  background-size: cover;
+  display: grid;
+  justify-items: center;
+}

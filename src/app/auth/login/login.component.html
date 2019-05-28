@@ -1,0 +1,37 @@
+<div class="content">
+  <div class="login-wrapper">
+    <h1>Log In</h1>
+    <form #f="ngForm" action="" method="post" class="login-form" (ngSubmit)="login(f)">
+      <div class="input-control">
+        <input type="email"
+               id="email"
+               placeholder="Your Email"
+               required
+               ngModel
+               name="email">
+        <label class="input-label" for="email">Your Email</label></div>
+      <div class="input-control">
+        <input type="password"
+               id="password"
+               minlength="6"
+               placeholder="Your Password"
+               required
+               ngModel
+               name="password">
+        <label class="input-label" for="password">Your Password</label></div>
+      <div class="action">
+        <p *ngIf="isLoading">Loading...</p>
+        <input *ngIf="!isLoading"
+               class="btn"
+               type="submit"
+               name="login"
+               value="Login">
+      </div>
+    </form>
+    <div class="social-btn-group">
+      <span>Log in with</span>
+      <a class="social-btn social-btn-gl" (click)="socialLoginByGoogle()"></a>
+      <a class="social-btn social-btn-gh" (click)="socialLoginByGithub()"></a>
+    </div>
+  </div>
+</div>

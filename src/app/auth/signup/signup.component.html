@@ -1,0 +1,45 @@
+<div class="content">
+  <div class="login-wrapper">
+    <h1>Sign Up</h1>
+    <form #f="ngForm" method="post" class="login-form" (ngSubmit)="signup(f)">
+      <div class="input-control">
+        <input type="text"
+               id="name"
+               placeholder="Your Name"
+               required
+               ngModel
+               name="name">
+        <label class="input-label" for="name">Your Name</label></div>
+      <div class="input-control">
+        <input type="email"
+               id="email"
+               placeholder="Your Email"
+               required
+               ngModel
+               name="email">
+        <label class="input-label" for="email">Your Email</label></div>
+      <div class="input-control">
+        <input type="password"
+               id="password"
+               minlength="6"
+               placeholder="Your Password"
+               required
+               ngModel
+               name="password">
+        <label class="input-label" for="password">Your Password</label></div>
+      <div class="action">
+        <p *ngIf="isLoading">Loading...</p>
+        <input *ngIf="!isLoading"
+               class="btn"
+               type="submit"
+               name="submit"
+               value="Submit">
+      </div>
+    </form>
+    <div class="social-btn-group">
+      <span>Sign up with</span>
+      <a class="social-btn social-btn-gl" href="#"></a>
+      <a class="social-btn social-btn-gh" href="#"></a>
+    </div>
+  </div>
+</div>
