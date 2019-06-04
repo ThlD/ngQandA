@@ -1,11 +1,9 @@
 <div class="content">
-  <p>Hello, {{currentUserName}}</p>
-  <div><button (click)="createQ()">Create question!</button></div>
-  <div><button (click)="getQs()">Get questions!</button></div>
-  <div *ngFor="let q of questions">
-    <p>{{q.name}}</p>
-    <p>{{q.description}}</p>
+  <p *ngIf="!isLoading">Hello, {{currentUserName}}</p>
+  <div *ngIf="isLoading">
+    Loading...
   </div>
 </div>
+
 
 

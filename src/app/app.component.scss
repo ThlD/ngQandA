@@ -153,16 +153,22 @@ header {
   }
 }
 
-.content {
-  color: white;
-  padding-top: 129px;
-  width: 100vw;
-  height: 100vh;
+main {
   background-image: url(../assets/background.jpg);
   background-color: #333333;
   background-blend-mode: multiply;
   -webkit-background-size: cover;
   background-size: cover;
-  display: grid;
-  justify-items: center;
+
+  .content {
+    color: white;
+    padding-top: 129px;
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    justify-items: center;
+  }
 }
+
+

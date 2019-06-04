@@ -12,24 +12,18 @@ export class HomePageComponent implements OnInit {
   questions: any;
   currentUserName: string;
   userNameSub: Subscription;
+  isLoading = false;
+  loadingSub: Subscription;
 
 
   constructor(private authService: AuthService,
               private uiService: UiService) { }
 
   ngOnInit() {
-    this.userNameSub = this.authService.userName.subscribe(userName => {
-      this.currentUserName = userName;
-      this.authService.questions.subscribe(questions => this.questions = questions);
+    this.loadingSub = this.uiService.isLoadingChange.subscribe(isLoading => {
+      this.isLoading = isLoading;
     });
-    this.authService.getUserName();
-  }
-
-  createQ() {
-    this.authService.createQ();
-  }
-
-  getQs() {
-    this.authService.getQs();
+    this.authService.fethUserName();
+    this.userNameSub = this.authService.userName.subscribe(name => this.currentUserName = name);
   }
 }

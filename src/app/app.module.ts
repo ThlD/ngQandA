@@ -19,7 +19,6 @@ import {UiService} from './shared/services/ui.service';
     AppComponent,
     LoginComponent,
     SignupComponent,
-    HomePageComponent
   ],
   imports: [
     BrowserModule,
