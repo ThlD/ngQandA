@@ -1,0 +1,77 @@
+<div *ngIf="isLoading">Loading...</div>
+<div *ngIf="!isLoading" class="q-view">
+  <div class="q-meta">
+    <div class="q-author"><span>{{question.author}}</span></div>
+    <div class="q-date"><span>{{question.date | appMoment: 'X'}}</span></div>
+  </div>
+  <div class="q-body">
+    <div class="q-title">
+      <h2>{{question.title}}</h2></div>
+    <hr>
+    <div class="q-desc">
+      <p>{{question.description}}</p>
+    </div>
+  </div>
+  <div class="q-action">
+    <ul class="tag-list">
+      <li class="tag-list-item" *ngFor="let tag of question.categories">
+        <button class="tag-link">{{tag}}</button>
+      </li>
+    </ul>
+    <div class="action">
+      <p *ngIf="isLoading">Loading...</p>
+      <button *ngIf="!isLoading && authService.canDeleteOrApprove(user) && !question.isApproved"
+              class="btn success"
+              (click)="approveQuestion(question)"
+              name="approved">Approve
+      </button>
+      <button *ngIf="!isLoading && authService.canDeleteOrApprove(user)"
+              class="btn warn"
+              (click)="deleteQuestion(question)"
+              name="approved">Delete
+      </button>
+      <button *ngIf="!isLoading && authService.canEditOrResolve(user) && user.name === question.author"
+              class="btn accent"
+              routerLink="/home/edit-question/{{question.id}}"
+              name="approved">Edit
+      </button>
+    </div>
+  </div>
+  <hr>
+  <div class="action">
+    <button class="btn primary"
+            name="approved"
+            (click)="toggle()">Comment
+    </button>
+  </div>
+  <div class="q-comment-form"
+       [hidden]="!visibility">
+    <h2>Your comment on this question:</h2>
+    <form #f="ngForm" method="post" (ngSubmit)="addNewComment(f)">
+      <textarea id="q-new-comment"
+                required
+                ngModel
+                name="comment"></textarea>
+      <input value="Add comment" type="submit" class="btn primary" [disabled]="f.invalid">
+      <input value="Cancel" type="button" class="btn warn" (click)="close(f)">
+    </form>
+  </div>
+</div>
+<div *ngIf="!isLoading" class="q-answers-list">
+  <div *ngFor="let comment of comments; let i = index" class="q-answers-item">
+    <div class="q-meta">
+      <div>
+        <span class="resolved-comment" *ngIf="comment.isResolved && user.name !== question.author"></span>
+        <span>Answered {{comment.date |  appMoment: 'X'}} by {{comment.author}}</span>
+      </div>
+      <div *ngIf="authService.canEditOrResolve(user) && user.name === question.author" class="resolve-box">
+        <input type="checkbox" id="resolve_{{i}}" [checked]="comment.isResolved" (change)="changeResolveState($event.target, i)">
+        <label for="resolve_{{i}}">Resolve</label>
+      </div>
+    </div>
+    <hr>
+    <div><p>{{comment.body}}</p></div>
+  </div>
+</div>
+
+

@@ -1,4 +1,4 @@
-<div class="content">
+<!--<div class="content">-->
   <div class="login-wrapper">
     <h1>Log In</h1>
     <form #f="ngForm" action="" method="post" class="login-form" (ngSubmit)="login(f)">
@@ -8,7 +8,8 @@
                placeholder="Your Email"
                required
                ngModel
-               name="email">
+               name="email"
+               email>
         <label class="input-label" for="email">Your Email</label></div>
       <div class="input-control">
         <input type="password"
@@ -22,10 +23,11 @@
       <div class="action">
         <p *ngIf="isLoading">Loading...</p>
         <input *ngIf="!isLoading"
-               class="btn"
+               class="btn primary "
                type="submit"
                name="login"
-               value="Login">
+               value="Login"
+               [disabled]="f.invalid">
       </div>
     </form>
     <div class="social-btn-group">
@@ -34,4 +36,4 @@
       <a class="social-btn social-btn-gh" (click)="socialLoginByGithub()"></a>
     </div>
   </div>
-</div>
+<!--</div>-->

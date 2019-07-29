@@ -30,6 +30,11 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  socialLoginByGoogle() {
+    this.authService.socialLoginByGoogle();
+  }
 
-
+  socialLoginByGithub() {
+    this.authService.socialLoginByGithub();
+  }
 }

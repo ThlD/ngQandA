@@ -1,8 +1,76 @@
-<div class="content">
-  <p *ngIf="!isLoading">Hello, {{currentUserName}}</p>
-  <div *ngIf="isLoading">
-    Loading...
+<!--<div class="content">-->
+<!--<p *ngIf="!isLoading">Hello, {{currentUserName}} <span *ngIf="authService.canDeleteOrApprove(user)">(ADMIN STATUS)</span></p>-->
+<div class="tools">
+  <div class="filters-tool">
+    <button class="btn filters-btn drop-btn" (click)="filtersToggle()">Filters</button>
+    <div id="filter-dropdown" class="dropdown-content" [hidden]="isFilterHidden">
+      <!--<a (click)="isAnsweredList(true)">Answered question</a>-->
+      <!--<a (click)="isAnsweredList(false)">Unanswered question</a>-->
+      <!--<a (click)="isAnsweredList(null)">Reset</a>-->
+      <form #f="ngForm" (change)="applyFilters(f)">
+        <div class="filter-group" *ngFor="let filter of filters; let x = index">
+          <h2>{{filter.name}}</h2>
+          <label>
+            <select name="{{filter.name}}" [(ngModel)]="appliedFilter[x].fields" [multiple]="filter.name === 'tag'">
+              <!--[value]="filter.fields[0].value"-->
+              <!--[selected]="i === 0"-->
+              <option *ngFor="let field of filter.fields, let i = index" value="{{field.value}}"  >{{field.view}}</option>
+            </select>
+          </label>
+        </div>
+      </form>
+    </div>
   </div>
+  <div class="sort-tool">
+    <button class="btn sort-btn drop-btn" (click)="sortToggle()">Sort</button>
+    <div id="sort-dropdown" class="dropdown-content" [hidden]="isSortHidden">
+      <a (click)="sortByDate(true)">New first</a>
+      <a (click)="sortByDate(false)">Old first</a>
+    </div>
+  </div>
+  <div class="settings-tool">
+    <button class="btn settings-btn drop-btn" (click)="settingsToggle()">Settings</button>
+    <div id="settings-dropdown" class="dropdown-content" [hidden]="isSettingsHidden">
+      <a (click)="changeLayout(false)">Tiled layout</a>
+      <a (click)="changeLayout(true)">String layout</a>
+    </div>
+  </div>
+</div>
+<div class="questions" *ngIf="!isLoading" [ngClass]="{'string-layout': isStringLayout}">
+  <div class="question-card" *ngFor="let question of (questions | filter:appliedFilter) | sortByDate: isNewFirst">
+    <div class="q-title">
+      <a routerLink="/question/{{question.id}}"><span>{{question.title}}</span></a></div>
+    <hr>
+    <div class="q-meta">
+      <div class="q-date">{{question.date | appMoment: 'X'}}</div>
+      <ul class="tag-list">
+        <li class="tag-list-item" *ngFor="let tag of question.categories">
+          <button class="tag-link">{{tag}}</button>
+        </li>
+      </ul>
+    </div>
+    <div class="action">
+      <p *ngIf="isLoading">Loading...</p>
+      <button *ngIf="!isLoading && authService.canDeleteOrApprove(user) && !question.isApproved"
+              class="btn success"
+              (click)="approveQuestion(question)"
+              name="approved">Approve
+      </button>
+      <button *ngIf="!isLoading && authService.canDeleteOrApprove(user)"
+              class="btn warn"
+              (click)="deleteQuestion(question)"
+              name="approved">Delete
+      </button>
+      <button *ngIf="!isLoading && authService.canEditOrResolve(user) && user.name === question.author"
+              class="btn accent"
+              routerLink="/home/edit-question/{{question.id}}"
+              name="approved">Edit
+      </button>
+    </div>
+  </div>
+</div>
+<div *ngIf="isLoading">
+  Loading...
 </div>
 
 

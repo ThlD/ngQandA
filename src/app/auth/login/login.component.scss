@@ -1,0 +1,98 @@
+@import "../../../variables";
+
+.login-wrapper {
+  width: calc(100vw - 32px);
+  margin-top: 130px;
+
+}
+
+.social-btn {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-top: 5px;
+  margin-right: 18px;
+  vertical-align: top;
+  opacity: .8;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.social-btn-gh {
+  background: url("../../../assets/github-logo.png");
+}
+
+.social-btn-gl {
+  background: url("../../../assets/google-logo.png");
+}
+
+.login-form > div.input-control {
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  margin-bottom: 20px;
+}
+
+.login-form > div.action {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  color: black;
+  height: 3em;
+  border: 1px solid rgba(191, 216, 227, .8);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 80%;
+  width: 100%;
+}
+
+input[type='submit'] {
+  grid-column: 2;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  position: absolute;
+  top: 7px;
+  left: 14px;
+  color: transparent;
+  user-select: none;
+  transition: 200ms ease all;
+}
+
+input:focus + .input-label,
+textarea:focus + .input-label {
+  font-size: 11px;
+  line-height: 13px;
+  transform: translateY(-23px);
+  color: #5b9ddf;
+}
+
+:focus::placeholder {
+  color: transparent;
+}
+
+.social-btn-group {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 5fr;
+  margin-top: 32px;
+  align-items: center;
+}
+
+@media only screen and (min-width: $xs) {
+
+  .login-wrapper {
+    width: 300px;
+    margin-top: 0;
+  }
+
+  .social-btn-group {
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+  }
+}

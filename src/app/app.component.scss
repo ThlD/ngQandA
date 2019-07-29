@@ -5,10 +5,24 @@ header {
   background: $bg-clr;
   text-align: center;
   display: grid;
+  grid-template-columns: 1fr auto 1fr auto;
+  grid-gap: 20px;
+
   position: fixed;
   //position: relative;
   z-index: 1000;
   width: 100vw;
+
+  .logo {
+    grid-column: 2 / 3;
+  }
+
+  .btn-group {
+    grid-column: 3 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 
   nav {
     position: absolute;
@@ -29,6 +43,7 @@ header {
       text-transform: uppercase;
       opacity: 0;
       transition: opacity 100ms ease-in-out;
+      cursor: pointer;
     }
 
     a:hover {
@@ -98,7 +113,7 @@ header {
 @media only screen and (min-width: $xs) {
   header {
     display: grid;
-    grid-template-columns: 1fr auto minmax(400px, 3fr) 1fr;
+    grid-template-columns: 1fr auto minmax(100px, 2fr) 1fr auto 1fr;
 
     .nav-toggle-label {
       display: none;
@@ -108,9 +123,14 @@ header {
       grid-column: 2 / 3;
     }
 
+    .btn-group {
+      grid-column: 4 / 5;
+      justify-content: center;
+    }
+
     nav {
       all: unset;
-      grid-column: 3 / 4;
+      grid-column: 5 / 6;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -148,27 +168,10 @@ header {
     }
   }
 
-  .content > div.login-wrapper {
-    width: 300px;
-  }
+  //.content > div.login-wrapper {
+  //  width: 300px;
+  //}
 }
 
-main {
-  background-image: url(../assets/background.jpg);
-  background-color: #333333;
-  background-blend-mode: multiply;
-  -webkit-background-size: cover;
-  background-size: cover;
-
-  .content {
-    color: white;
-    padding-top: 129px;
-    width: 100vw;
-    height: 100vh;
-
-    display: grid;
-    justify-items: center;
-  }
-}
 
 

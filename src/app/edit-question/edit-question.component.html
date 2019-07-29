@@ -1,0 +1,43 @@
+<h2>Edit Question</h2>
+<hr>
+<div *ngIf="isLoading">Loading...</div>
+<form *ngIf="!isLoading" #f="ngForm" action="" method="post" class="login-form" (ngSubmit)="updateQuestion(f)">
+  <div class="input-control">
+    <input type="text"
+           id="question-title"
+           placeholder="Title"
+           required
+           ngModel="{{question.title}}"
+           name="title">
+    <label class="input-label" for="question-title">Title</label>
+  </div>
+  <div class="input-control">
+  <textarea id="question-description"
+            placeholder="Description"
+            required
+            ngModel="{{question.description}}"
+            name="description"></textarea>
+    <label class="input-label" for="question-description">Description</label>
+  </div>
+  <div class="input-control">
+    <span>Categories:</span>
+    <mat-selection-list #categories ngModel name="categories">
+      <mat-list-option *ngFor="let category of typeOfCategories" value="{{category}}" [selected]="isSelected(category)">
+        {{category}}
+      </mat-list-option>
+    </mat-selection-list>
+    <!--<span>Category:</span>-->
+    <!--<label for="cb-html"><input type="checkbox" value="html" id="cb-html" ngModel name="categories">HTML</label>-->
+    <!--<label for="cb-css"><input type="checkbox" value="css" id="cb-css" ngModel name="categories">CSS</label>-->
+    <!--<label for="cb-js"><input type="checkbox" value="js" id="cb-js" ngModel name="categories">JS</label>-->
+  </div>
+  <div class="action">
+    <p *ngIf="isLoading">Loading...</p>
+    <input *ngIf="!isLoading"
+           class="btn success"
+           type="submit"
+           name="new-question"
+           value="Edit question"
+           [disabled]="f.invalid">
+  </div>
+</form>

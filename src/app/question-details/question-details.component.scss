@@ -1,0 +1,140 @@
+@import "../../variables";
+
+textarea {
+  height: 100px;
+  resize: none;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+}
+
+input[type=checkbox] + label {
+  display: block;
+  margin: 0.2em;
+  cursor: pointer;
+  padding: 0.2em;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox] + label:before {
+  content: "\2714";
+  border: 0.1em solid #000;
+  border-radius: 0.2em;
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  padding-left: 0.2em;
+  padding-bottom: 0.2em;
+  margin-right: 0.2em;
+  vertical-align: bottom;
+  color: transparent;
+  transition: .2s;
+}
+
+input[type=checkbox] + label:active:before {
+  transform: scale(0);
+}
+
+input[type=checkbox]:checked + label:before {
+  background-color: MediumSeaGreen;
+  border-color: MediumSeaGreen;
+  color: #fff;
+}
+
+.q-view, .q-answers-item {
+  width: calc(100vw - 20px);
+  margin: 10px 0;
+  padding: 5px 10px 10px;
+  background: #fff;
+}
+
+.q-answers-list {
+  background-color: #ecf0f1;
+}
+
+.q-meta {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.q-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 12px;
+}
+
+.tag-list {
+  display: block;
+  list-style: none;
+  padding: 0;
+  align-content: flex-start;
+
+  .tag-list-item {
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  .tag-link {
+    background: #e67e22;
+    border: none;
+    color: #fff;
+    display: inline-block;
+    font-family: "Ubuntu", "Helvetica", "Arial", "FreeSans", sans-serif;
+    font-size: 11px;
+    line-height: 1.5em;
+    padding: 2px 8px;
+    margin-bottom: 2px;
+    text-decoration: none;
+    transition: all 0.75s ease-in-out 0s;
+  }
+
+  .tag-link:hover {
+    background: #f39c12;
+    transition: all 0.25s ease-in-out 0s;
+  }
+}
+
+.btn {
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+.resolve-box {
+  display: inline-block;
+}
+
+.resolved-comment:after {
+  content: "\2714";
+  border-radius: 0.2em;
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  padding-left: 0.2em;
+  padding-bottom: 0.2em;
+  margin-right: 0.2em;
+  vertical-align: bottom;
+  background-color: MediumSeaGreen;
+  border-color: MediumSeaGreen;
+  color: #fff;
+}
+
+@media only screen and (min-width: $xs) {
+  .q-view, .q-answers-item {
+    max-width: 560px;
+    margin: 10px 0;
+  }
+
+  .q-action {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}
+

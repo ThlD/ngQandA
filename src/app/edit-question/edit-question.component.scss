@@ -1,0 +1,25 @@
+form {
+  width: 400px;
+
+  textarea {
+    height: 300px;
+    resize: none;
+    overflow: auto;
+  }
+}
+
+hr {
+  margin-bottom: 30px;
+}
+
+.action {
+  display: flex;
+  margin-top: 15px;
+  //align-items: center;
+  //align-content: center;
+  justify-content: center;
+}
+
+.mat-list-base .mat-list-option {
+  color: #000;
+}

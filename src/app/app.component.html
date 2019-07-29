@@ -1,13 +1,19 @@
 <header>
   <h1 class="logo">
-    <a routerLink="/login"><img src="../assets/logo.png" alt="Logo" width="80" height="80"></a>
+    <a routerLink="/home"><img src="../assets/logo.png" alt="Logo" width="80" height="80"></a>
+    <!--<a *ngIf="!isAuth" routerLink="/login"><img src="../assets/logo.png" alt="Logo" width="80" height="80"></a>-->
   </h1>
+  <div class="btn-group">
+    <button class="btn primary" *ngIf="isAuth && isButtonVisible " routerLink="/home/new-question">
+      Add question
+    </button>
+  </div>
   <input type="checkbox" class="nav-toggle" id="nav-toggle">
   <nav>
     <ul>
-      <li><a routerLink="/login">Login</a></li>
-      <li><a routerLink="/signup">Sign Up</a></li>
-      <li><a (click)="logout()">Log out</a></li>
+      <li><a routerLink="/login" *ngIf="!isAuth">Login</a></li>
+      <li><a routerLink="/signup" *ngIf="!isAuth">Sign Up</a></li>
+      <li><a (click)="logout()" *ngIf="isAuth">Log out</a></li>
     </ul>
   </nav>
   <label for="nav-toggle" class="nav-toggle-label">
@@ -15,7 +21,10 @@
   </label>
 </header>
 <main>
+  <div class="content">
     <router-outlet></router-outlet>
+  </div>
+
 </main>
 
 <!--<div class="login-wrapper">-->
